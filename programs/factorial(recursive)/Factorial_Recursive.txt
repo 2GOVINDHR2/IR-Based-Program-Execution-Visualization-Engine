@@ -1,0 +1,20 @@
+def factorial_recursive(n):
+    if n == 1:
+        return 1
+    else:
+        return n * factorial_recursive(n - 1)
+
+
+# Input with constraint: 0 < n < 10
+while True:
+    try:
+        n = int(input("Enter n (1–9): "))
+        if 0 < n < 10:
+            break
+        else:
+            print("Invalid input. Enter a number between 1 and 9.")
+    except:
+        print("Invalid input. Enter an integer.")
+
+result = factorial_recursive(n)
+print(result)

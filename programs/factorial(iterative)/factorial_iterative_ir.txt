@@ -1,0 +1,25 @@
+assign fact 1
+assign i 1
+
+label L1
+
+load i R1
+load n R2
+lte R1 R2 R3
+if_false R3 L2
+
+load fact R4
+load i R5
+mul R4 R5 R6
+store R6 fact
+
+load i R7
+add R7 1 R8
+store R8 i
+
+goto L1
+
+label L2
+
+load fact R9
+freturn R9

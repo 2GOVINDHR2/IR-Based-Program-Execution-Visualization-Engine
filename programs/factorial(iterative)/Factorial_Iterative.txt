@@ -1,0 +1,24 @@
+def factorial_iterative(n):
+    fact = 1
+    i = 1
+
+    while i <= n:
+        fact = fact * i
+        i = i + 1
+
+    return fact
+
+
+# Input with constraint: 0 < n < 10
+while True:
+    try:
+        n = int(input("Enter n (1–9): "))
+        if 0 < n < 10:
+            break
+        else:
+            print("Invalid input. Enter a number between 1 and 9.")
+    except:
+        print("Invalid input. Enter an integer.")
+
+result = factorial_iterative(n)
+print(result)

@@ -1,0 +1,17 @@
+1. Initialize fact = 1
+2. Initialize i = 1
+
+3. L1: Loop Start
+
+4. Check condition: i <= n
+   If false → go to L2
+
+5. Multiply fact = fact * i
+
+6. Increment i = i + 1
+
+7. Go back to L1
+
+8. L2: Loop End
+
+9. Return fact

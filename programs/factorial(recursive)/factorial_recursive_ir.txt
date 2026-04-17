@@ -1,0 +1,28 @@
+fenter factorial
+
+label L0
+
+load n R1
+eq R1 1 R2
+if_false R2 L1
+
+assign result 1
+load result R3
+freturn R3
+
+label L1
+
+load n R1
+sub R1 1 R2
+store R2 temp
+
+param temp
+fcall factorial
+
+load n R1
+load ret R2
+mul R1 R2 R3
+store R3 result
+
+load result R4
+freturn R4
