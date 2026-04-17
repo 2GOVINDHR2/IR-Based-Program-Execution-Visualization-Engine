@@ -1,5 +1,4 @@
 # IR-Based-Program-Execution-Visualization-Engine
-# IR-Based Program Execution & Visualization Engine
 
 ## Overview
 
