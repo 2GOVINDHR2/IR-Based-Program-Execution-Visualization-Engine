@@ -15,6 +15,9 @@ class ExecutionEngine:
         self.ret = None
         self.return_value = None
 
+        # ✅ NEW: snapshot storage
+        self.snapshots = []
+
         self._build_label_map()
 
     def _build_label_map(self):
@@ -29,6 +32,10 @@ class ExecutionEngine:
 
         instr = self.ir[self.ip]
         self.execute(instr)
+
+        # ✅ capture snapshot AFTER execution
+        self._capture_snapshot(instr)
+
         return instr
 
     def _get_value(self, operand):
@@ -46,6 +53,18 @@ class ExecutionEngine:
     def _set_variable(self, var_name, value):
         self.current_frame["locals"][var_name] = value
 
+    # ✅ NEW: snapshot creator
+    def _capture_snapshot(self, instr):
+        snapshot = {
+            "ip": self.ip,
+            "instruction": instr,
+            "locals": dict(self.current_frame["locals"]),
+            "registers": dict(self.registers),
+            "stack_depth": len(self.stack),
+            "ret": self.ret
+        }
+        self.snapshots.append(snapshot)
+
     def execute(self, instr):
         op = instr["op"]
         args = instr["args"]
@@ -53,12 +72,9 @@ class ExecutionEngine:
         # ---------------- BASIC ----------------
 
         if op == "assign":
-            var_name = args[0]
-            value = args[1]
-
+            var_name, value = args
             if isinstance(value, str) and value.lstrip('-').isdigit():
                 value = int(value)
-
             self._set_variable(var_name, value)
             self.ip += 1
 
@@ -111,7 +127,7 @@ class ExecutionEngine:
             self.registers[r3] = 1 if self._get_value(r1) <= self._get_value(r2) else 0
             self.ip += 1
 
-        elif op == "gt":   # ✅ NEW
+        elif op == "gt":
             r1, r2, r3 = args
             self.registers[r3] = 1 if self._get_value(r1) > self._get_value(r2) else 0
             self.ip += 1
@@ -120,20 +136,16 @@ class ExecutionEngine:
 
         elif op == "arr_load":
             arr_name, idx_reg, result_reg = args
-
             arr = self.current_frame["locals"].get(arr_name, [])
             idx = self._get_value(idx_reg)
-
             self.registers[result_reg] = arr[idx]
             self.ip += 1
 
         elif op == "arr_store":
             value_reg, arr_name, idx_reg = args
-
             arr = self.current_frame["locals"].get(arr_name, [])
             idx = self._get_value(idx_reg)
             val = self._get_value(value_reg)
-
             arr[idx] = val
             self.ip += 1
 
@@ -189,5 +201,3 @@ class ExecutionEngine:
 
                 self.current_frame = prev_frame
                 self.ip = return_ip
-
-

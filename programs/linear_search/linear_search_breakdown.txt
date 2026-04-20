@@ -1,0 +1,42 @@
+FUNCTION linear_search
+
+INITIALIZATION:
+
+i = 0
+
+----------------------------------
+
+L0: LOOP_START
+
+Check if i < n
+If false → goto L3
+
+----------------------------------
+
+Access array:
+
+value = arr[i]
+
+----------------------------------
+
+Check if value == target
+If true → goto L1
+
+----------------------------------
+
+Increment index:
+
+i = i + 1
+goto L0
+
+----------------------------------
+
+L1: FOUND
+
+Return i
+
+----------------------------------
+
+L3: NOT FOUND
+
+Return -1

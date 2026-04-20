@@ -1,0 +1,32 @@
+def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1
+
+
+# Input section
+n = int(input("Enter size of array (1 < n < 10): "))
+
+if 1 < n < 10:
+    arr = list(map(int, input("Enter sorted elements: ").split()))
+
+    if len(arr) != n:
+        print("Invalid input length")
+    else:
+        target = int(input("Enter target value: "))
+        result = binary_search(arr, target)
+
+        print("Result Index:", result)
+else:
+    print("Invalid array size")

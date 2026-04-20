@@ -1,0 +1,89 @@
+fenter bubble_sort
+
+assign i 0
+
+----------------------------------
+
+label L0
+
+load i R1
+load n R2
+lt R1 R2 R3
+if_false R3 L6
+
+----------------------------------
+
+assign j 0
+
+----------------------------------
+
+label L1
+
+load n R1
+load i R2
+sub R1 R2 R3
+sub R3 1 R4
+store R4 limit
+
+load j R1
+load limit R2
+lt R1 R2 R3
+if_false R3 L4
+
+----------------------------------
+
+load j R1
+arr_load arr R1 R2
+store R2 a
+
+load j R1
+add R1 1 R3
+arr_load arr R3 R4
+store R4 b
+
+----------------------------------
+
+load a R1
+load b R2
+gt R1 R2 R3
+if_false R3 L2
+
+----------------------------------
+
+assign temp 0
+load a R1
+store R1 temp
+
+load b R1
+load j R2
+arr_store R1 arr R2
+
+load temp R1
+load j R2
+add R2 1 R3
+arr_store R1 arr R3
+
+----------------------------------
+
+label L2
+
+load j R1
+add R1 1 R2
+store R2 j
+goto L1
+
+----------------------------------
+
+label L4
+
+load i R1
+add R1 1 R2
+store R2 i
+goto L0
+
+----------------------------------
+
+label L6
+
+load arr R1
+freturn R1

@@ -1,0 +1,51 @@
+fenter linear_search
+
+assign i 0
+
+----------------------------------
+
+label L0
+
+load i R1
+load n R2
+lt R1 R2 R3
+if_false R3 L3
+
+----------------------------------
+
+load i R1
+arr_load arr R1 R2
+store R2 value
+
+----------------------------------
+
+load value R1
+load target R2
+eq R1 R2 R3
+if_false R3 L1_CHECK
+
+goto L1
+
+----------------------------------
+
+label L1_CHECK
+
+load i R1
+add R1 1 R2
+store R2 i
+goto L0
+
+----------------------------------
+
+label L1
+
+load i R1
+freturn R1
+
+----------------------------------
+
+label L3
+
+assign result -1
+load result R1
+freturn R1

@@ -1,0 +1,41 @@
+[
+  {"op": "fenter", "args": ["linear_search"], "line": 1},
+
+  {"op": "assign", "args": ["i", "0"], "line": 2},
+
+  {"op": "label", "args": ["L0"], "line": 4},
+
+  {"op": "load", "args": ["i", "R1"], "line": 5},
+  {"op": "load", "args": ["n", "R2"], "line": 5},
+  {"op": "lt", "args": ["R1", "R2", "R3"], "line": 5},
+  {"op": "if_false", "args": ["R3", "L3"], "line": 5},
+
+  {"op": "load", "args": ["i", "R1"], "line": 7},
+  {"op": "arr_load", "args": ["arr", "R1", "R2"], "line": 7},
+  {"op": "store", "args": ["R2", "value"], "line": 7},
+
+  {"op": "load", "args": ["value", "R1"], "line": 9},
+  {"op": "load", "args": ["target", "R2"], "line": 9},
+  {"op": "eq", "args": ["R1", "R2", "R3"], "line": 9},
+  {"op": "if_false", "args": ["R3", "L1_CHECK"], "line": 9},
+
+  {"op": "goto", "args": ["L1"], "line": 10},
+
+  {"op": "label", "args": ["L1_CHECK"], "line": 12},
+
+  {"op": "load", "args": ["i", "R1"], "line": 13},
+  {"op": "add", "args": ["R1", "1", "R2"], "line": 13},
+  {"op": "store", "args": ["R2", "i"], "line": 13},
+  {"op": "goto", "args": ["L0"], "line": 14},
+
+  {"op": "label", "args": ["L1"], "line": 16},
+
+  {"op": "load", "args": ["i", "R1"], "line": 17},
+  {"op": "freturn", "args": ["R1"], "line": 17},
+
+  {"op": "label", "args": ["L3"], "line": 19},
+
+  {"op": "assign", "args": ["result", "-1"], "line": 20},
+  {"op": "load", "args": ["result", "R1"], "line": 20},
+  {"op": "freturn", "args": ["R1"], "line": 20}
+]
