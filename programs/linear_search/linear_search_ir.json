@@ -1,41 +1,41 @@
 [
-  {"op": "fenter", "args": ["linear_search"], "line": 1},
+  {"op": "fenter", "args": ["linear_search"], "line": 1, "py_line": 1},
 
-  {"op": "assign", "args": ["i", "0"], "line": 2},
+  {"op": "assign", "args": ["i", "0"], "line": 2, "py_line": 2},
 
-  {"op": "label", "args": ["L0"], "line": 4},
+  {"op": "label", "args": ["L0"], "line": 4, "py_line": 4},
 
-  {"op": "load", "args": ["i", "R1"], "line": 5},
-  {"op": "load", "args": ["n", "R2"], "line": 5},
-  {"op": "lt", "args": ["R1", "R2", "R3"], "line": 5},
-  {"op": "if_false", "args": ["R3", "L3"], "line": 5},
+  {"op": "load", "args": ["i", "R1"], "line": 4, "py_line": 4},
+  {"op": "load", "args": ["n", "R2"], "line": 4, "py_line": 4},
+  {"op": "lt", "args": ["R1", "R2", "R3"], "line": 4, "py_line": 4},
+  {"op": "if_false", "args": ["R3", "L3"], "line": 4, "py_line": 4},
 
-  {"op": "load", "args": ["i", "R1"], "line": 7},
-  {"op": "arr_load", "args": ["arr", "R1", "R2"], "line": 7},
-  {"op": "store", "args": ["R2", "value"], "line": 7},
+  {"op": "load", "args": ["i", "R1"], "line": 5, "py_line": 5},
+  {"op": "arr_load", "args": ["arr", "R1", "R2"], "line": 5, "py_line": 5},
+  {"op": "store", "args": ["R2", "value"], "line": 5, "py_line": 5},
 
-  {"op": "load", "args": ["value", "R1"], "line": 9},
-  {"op": "load", "args": ["target", "R2"], "line": 9},
-  {"op": "eq", "args": ["R1", "R2", "R3"], "line": 9},
-  {"op": "if_false", "args": ["R3", "L1_CHECK"], "line": 9},
+  {"op": "load", "args": ["value", "R1"], "line": 5, "py_line": 5},
+  {"op": "load", "args": ["target", "R2"], "line": 5, "py_line": 5},
+  {"op": "eq", "args": ["R1", "R2", "R3"], "line": 5, "py_line": 5},
+  {"op": "if_false", "args": ["R3", "L1_CHECK"], "line": 5, "py_line": 5},
 
-  {"op": "goto", "args": ["L1"], "line": 10},
+  {"op": "goto", "args": ["L1"], "line": 6, "py_line": 6},
 
-  {"op": "label", "args": ["L1_CHECK"], "line": 12},
+  {"op": "label", "args": ["L1_CHECK"], "line": 7, "py_line": 7},
 
-  {"op": "load", "args": ["i", "R1"], "line": 13},
-  {"op": "add", "args": ["R1", "1", "R2"], "line": 13},
-  {"op": "store", "args": ["R2", "i"], "line": 13},
-  {"op": "goto", "args": ["L0"], "line": 14},
+  {"op": "load", "args": ["i", "R1"], "line": 7, "py_line": 7},
+  {"op": "add", "args": ["R1", "1", "R2"], "line": 7, "py_line": 7},
+  {"op": "store", "args": ["R2", "i"], "line": 7, "py_line": 7},
+  {"op": "goto", "args": ["L0"], "line": 7, "py_line": 7},
 
-  {"op": "label", "args": ["L1"], "line": 16},
+  {"op": "label", "args": ["L1"], "line": 6, "py_line": 6},
 
-  {"op": "load", "args": ["i", "R1"], "line": 17},
-  {"op": "freturn", "args": ["R1"], "line": 17},
+  {"op": "load", "args": ["i", "R1"], "line": 6, "py_line": 6},
+  {"op": "freturn", "args": ["R1"], "line": 6, "py_line": 6},
 
-  {"op": "label", "args": ["L3"], "line": 19},
+  {"op": "label", "args": ["L3"], "line": 9, "py_line": 9},
 
-  {"op": "assign", "args": ["result", "-1"], "line": 20},
-  {"op": "load", "args": ["result", "R1"], "line": 20},
-  {"op": "freturn", "args": ["R1"], "line": 20}
+  {"op": "assign", "args": ["result", "-1"], "line": 9, "py_line": 9},
+  {"op": "load", "args": ["result", "R1"], "line": 9, "py_line": 9},
+  {"op": "freturn", "args": ["R1"], "line": 9, "py_line": 9}
 ]

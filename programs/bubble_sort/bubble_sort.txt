@@ -1,24 +1,9 @@
-def bubble_sort(arr, n):
-    for i in range(n):
-        for j in range(0, n - i - 1):
-            if arr[j] > arr[j + 1]:
-                temp = arr[j]
-                arr[j] = arr[j + 1]
-                arr[j + 1] = temp
-
-    return arr
-
-
-# Input
-n = int(input("Enter size (1 < n < 10): "))
-
-if 1 < n < 10:
-    arr = list(map(int, input("Enter elements: ").split()))
-
-    if len(arr) != n:
-        print("Invalid input length")
-    else:
-        sorted_arr = bubble_sort(arr, n)
-        print("Sorted Array:", sorted_arr)
-else:
-    print("Invalid size")
+1: def bubble_sort(arr, n):
+2:     for i in range(n):
+3:         for j in range(0, n - i - 1):
+4:             if arr[j] > arr[j + 1]:
+5:                 temp = arr[j]
+6:                 arr[j] = arr[j + 1]
+7:                 arr[j + 1] = temp
+8:
+9:     return arr

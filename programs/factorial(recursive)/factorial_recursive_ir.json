@@ -1,30 +1,28 @@
 [
-  {"op": "fenter", "args": ["factorial"], "line": 1},
+  {"op": "fenter", "args": ["factorial"], "line": 1, "py_line": 1},
 
-  {"op": "label", "args": ["L0"], "line": 2},
+  {"op": "load", "args": ["n", "R1"], "line": 2, "py_line": 2},
+  {"op": "eq", "args": ["R1", "1", "R2"], "line": 2, "py_line": 2},
+  {"op": "if_false", "args": ["R2", "L_rec"], "line": 2, "py_line": 2},
 
-  {"op": "load", "args": ["n", "R1"], "line": 3},
-  {"op": "eq", "args": ["R1", "1", "R2"], "line": 3},
-  {"op": "if_false", "args": ["R2", "L1"], "line": 3},
+  {"op": "assign", "args": ["result", "1"], "line": 3, "py_line": 3},
+  {"op": "load", "args": ["result", "R1"], "line": 3, "py_line": 3},
+  {"op": "freturn", "args": ["R1"], "line": 3, "py_line": 3},
 
-  {"op": "assign", "args": ["result", "1"], "line": 4},
-  {"op": "load", "args": ["result", "R1"], "line": 4},
-  {"op": "freturn", "args": ["R1"], "line": 4},
+  {"op": "label", "args": ["L_rec"], "line": 5, "py_line": 5},
 
-  {"op": "label", "args": ["L1"], "line": 6},
+  {"op": "load", "args": ["n", "R1"], "line": 5, "py_line": 5},
+  {"op": "sub", "args": ["R1", "1", "R2"], "line": 5, "py_line": 5},
+  {"op": "store", "args": ["R2", "temp"], "line": 5, "py_line": 5},
 
-  {"op": "load", "args": ["n", "R1"], "line": 7},
-  {"op": "sub", "args": ["R1", "1", "R2"], "line": 7},
-  {"op": "store", "args": ["R2", "temp"], "line": 7},
+  {"op": "param", "args": ["temp"], "line": 5, "py_line": 5},
+  {"op": "fcall", "args": ["factorial"], "line": 5, "py_line": 5},
 
-  {"op": "param", "args": ["temp"], "line": 8},
-  {"op": "fcall", "args": ["factorial"], "line": 8},
+  {"op": "load", "args": ["n", "R1"], "line": 5, "py_line": 5},
+  {"op": "load", "args": ["ret", "R2"], "line": 5, "py_line": 5},
+  {"op": "mul", "args": ["R1", "R2", "R3"], "line": 5, "py_line": 5},
+  {"op": "store", "args": ["R3", "result"], "line": 5, "py_line": 5},
 
-  {"op": "load", "args": ["n", "R1"], "line": 9},
-  {"op": "load", "args": ["ret", "R2"], "line": 9},
-  {"op": "mul", "args": ["R1", "R2", "R3"], "line": 9},
-  {"op": "store", "args": ["R3", "result"], "line": 9},
-
-  {"op": "load", "args": ["result", "R1"], "line": 10},
-  {"op": "freturn", "args": ["R1"], "line": 10}
+  {"op": "load", "args": ["result", "R1"], "line": 5, "py_line": 5},
+  {"op": "freturn", "args": ["R1"], "line": 5, "py_line": 5}
 ]

@@ -1,29 +1,29 @@
 [
-  {"op": "fenter", "args": ["fib"], "line": 1},
+  {"op": "fenter", "args": ["fib"], "line": 1, "py_line": 1},
 
-  {"op": "load", "args": ["n", "R1"], "line": 2},
-  {"op": "lte", "args": ["R1", "1", "R2"], "line": 3},
-  {"op": "if_false", "args": ["R2", "L_rec"], "line": 4},
+  {"op": "load", "args": ["n", "R1"], "line": 2, "py_line": 2},
+  {"op": "lte", "args": ["R1", "1", "R2"], "line": 3, "py_line": 2},
+  {"op": "if_false", "args": ["R2", "L_rec"], "line": 4, "py_line": 2},
 
-  {"op": "freturn", "args": ["R1"], "line": 5},
+  {"op": "freturn", "args": ["R1"], "line": 5, "py_line": 3},
 
-  {"op": "label", "args": ["L_rec"], "line": 6},
+  {"op": "label", "args": ["L_rec"], "line": 6, "py_line": 5},
 
-  {"op": "load", "args": ["n", "R1"], "line": 7},
-  {"op": "sub", "args": ["R1", "1", "R2"], "line": 8},
-  {"op": "param", "args": ["R2"], "line": 9},
-  {"op": "fcall", "args": ["fib"], "line": 10},
-  {"op": "assign", "args": ["t1", "ret"], "line": 11},
+  {"op": "load", "args": ["n", "R1"], "line": 7, "py_line": 5},
+  {"op": "sub", "args": ["R1", "1", "R2"], "line": 8, "py_line": 5},
+  {"op": "param", "args": ["R2"], "line": 9, "py_line": 5},
+  {"op": "fcall", "args": ["fib"], "line": 10, "py_line": 5},
+  {"op": "assign", "args": ["t1", "ret"], "line": 11, "py_line": 5},
 
-  {"op": "load", "args": ["n", "R1"], "line": 12},
-  {"op": "sub", "args": ["R1", "2", "R2"], "line": 13},
-  {"op": "param", "args": ["R2"], "line": 14},
-  {"op": "fcall", "args": ["fib"], "line": 15},
-  {"op": "assign", "args": ["t2", "ret"], "line": 16},
+  {"op": "load", "args": ["n", "R1"], "line": 12, "py_line": 5},
+  {"op": "sub", "args": ["R1", "2", "R2"], "line": 13, "py_line": 5},
+  {"op": "param", "args": ["R2"], "line": 14, "py_line": 5},
+  {"op": "fcall", "args": ["fib"], "line": 15, "py_line": 5},
+  {"op": "assign", "args": ["t2", "ret"], "line": 16, "py_line": 5},
 
-  {"op": "load", "args": ["t1", "R1"], "line": 17},
-  {"op": "load", "args": ["t2", "R2"], "line": 18},
-  {"op": "add", "args": ["R1", "R2", "R3"], "line": 19},
+  {"op": "load", "args": ["t1", "R1"], "line": 17, "py_line": 5},
+  {"op": "load", "args": ["t2", "R2"], "line": 18, "py_line": 5},
+  {"op": "add", "args": ["R1", "R2", "R3"], "line": 19, "py_line": 5},
 
-  {"op": "freturn", "args": ["R3"], "line": 20}
+  {"op": "freturn", "args": ["R3"], "line": 20, "py_line": 5}
 ]

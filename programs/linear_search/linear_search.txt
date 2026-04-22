@@ -1,24 +1,9 @@
-def linear_search(arr, target):
-    i = 0
-
-    while i < len(arr):
-        if arr[i] == target:
-            return i
-        i = i + 1
-
-    return -1
-
-
-# Input
-n = int(input("Enter size (1 < n < 10): "))
-
-if 1 < n < 10:
-    arr = list(map(int, input("Enter elements: ").split()))
-
-    if len(arr) != n:
-        print("Invalid input length")
-    else:
-        target = int(input("Enter target: "))
-        print("Result Index:", linear_search(arr, target))
-else:
-    print("Invalid size")
+1: def linear_search(arr, target):
+2:     i = 0
+3:     
+4:     while i < len(arr):
+5:         if arr[i] == target:
+6:             return i
+7:         i = i + 1
+8:     
+9:     return -1

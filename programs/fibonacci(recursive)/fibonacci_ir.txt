@@ -1,0 +1,27 @@
+fenter fib
+
+load n R1
+lte R1 1 R2
+if_false R2 L_rec
+
+freturn R1
+
+label L_rec
+
+load n R1
+sub R1 1 R2
+param R2
+fcall fib
+assign t1 ret
+
+load n R1
+sub R1 2 R2
+param R2
+fcall fib
+assign t2 ret
+
+load t1 R1
+load t2 R2
+add R1 R2 R3
+
+freturn R3

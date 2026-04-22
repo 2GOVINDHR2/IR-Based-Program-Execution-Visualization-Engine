@@ -1,73 +1,66 @@
 [
-  {"op": "fenter", "args": ["bubble_sort"], "line": 1},
+  {"op": "fenter", "args": ["bubble_sort"], "line": 1, "py_line": 1},
 
-  {"op": "assign", "args": ["i", "0"], "line": 2},
+  {"op": "assign", "args": ["i", "0"], "line": 2, "py_line": 2},
 
-  {"op": "label", "args": ["L0"], "line": 4},
+  {"op": "label", "args": ["L0"], "line": 2, "py_line": 2},
 
-  {"op": "load", "args": ["i", "R1"], "line": 5},
-  {"op": "load", "args": ["n", "R2"], "line": 5},
-  {"op": "lt", "args": ["R1", "R2", "R3"], "line": 5},
-  {"op": "if_false", "args": ["R3", "L6"], "line": 5},
+  {"op": "load", "args": ["i", "R1"], "line": 2, "py_line": 2},
+  {"op": "load", "args": ["n", "R2"], "line": 2, "py_line": 2},
+  {"op": "lt", "args": ["R1", "R2", "R3"], "line": 2, "py_line": 2},
+  {"op": "if_false", "args": ["R3", "L6"], "line": 2, "py_line": 2},
 
-  {"op": "assign", "args": ["j", "0"], "line": 7},
+  {"op": "assign", "args": ["j", "0"], "line": 3, "py_line": 3},
 
-  {"op": "label", "args": ["L1"], "line": 9},
+  {"op": "label", "args": ["L1"], "line": 3, "py_line": 3},
 
-  {"op": "load", "args": ["n", "R1"], "line": 10},
-  {"op": "load", "args": ["i", "R2"], "line": 10},
-  {"op": "sub", "args": ["R1", "R2", "R3"], "line": 10},
-  {"op": "sub", "args": ["R3", "1", "R4"], "line": 10},
-  {"op": "store", "args": ["R4", "limit"], "line": 10},
+  {"op": "load", "args": ["n", "R1"], "line": 3, "py_line": 3},
+  {"op": "load", "args": ["i", "R2"], "line": 3, "py_line": 3},
+  {"op": "sub", "args": ["R1", "R2", "R3"], "line": 3, "py_line": 3},
+  {"op": "sub", "args": ["R3", "1", "R4"], "line": 3, "py_line": 3},
 
-  {"op": "load", "args": ["j", "R1"], "line": 12},
-  {"op": "load", "args": ["limit", "R2"], "line": 12},
-  {"op": "lt", "args": ["R1", "R2", "R3"], "line": 12},
-  {"op": "if_false", "args": ["R3", "L4"], "line": 12},
+  {"op": "load", "args": ["j", "R1"], "line": 3, "py_line": 3},
+  {"op": "lt", "args": ["R1", "R4", "R3"], "line": 3, "py_line": 3},
+  {"op": "if_false", "args": ["R3", "L4"], "line": 3, "py_line": 3},
 
-  {"op": "load", "args": ["j", "R1"], "line": 14},
-  {"op": "arr_load", "args": ["arr", "R1", "R2"], "line": 14},
-  {"op": "store", "args": ["R2", "a"], "line": 14},
+  {"op": "load", "args": ["j", "R1"], "line": 4, "py_line": 4},
+  {"op": "arr_load", "args": ["arr", "R1", "R2"], "line": 4, "py_line": 4},
 
-  {"op": "load", "args": ["j", "R1"], "line": 16},
-  {"op": "add", "args": ["R1", "1", "R3"], "line": 16},
-  {"op": "arr_load", "args": ["arr", "R3", "R4"], "line": 16},
-  {"op": "store", "args": ["R4", "b"], "line": 16},
+  {"op": "load", "args": ["j", "R1"], "line": 4, "py_line": 4},
+  {"op": "add", "args": ["R1", "1", "R3"], "line": 4, "py_line": 4},
+  {"op": "arr_load", "args": ["arr", "R3", "R4"], "line": 4, "py_line": 4},
 
-  {"op": "load", "args": ["a", "R1"], "line": 18},
-  {"op": "load", "args": ["b", "R2"], "line": 18},
-  {"op": "gt", "args": ["R1", "R2", "R3"], "line": 18},
-  {"op": "if_false", "args": ["R3", "L2"], "line": 18},
+  {"op": "gt", "args": ["R2", "R4", "R3"], "line": 4, "py_line": 4},
+  {"op": "if_false", "args": ["R3", "L2"], "line": 4, "py_line": 4},
 
-  {"op": "assign", "args": ["temp", "0"], "line": 20},
-  {"op": "load", "args": ["a", "R1"], "line": 21},
-  {"op": "store", "args": ["R1", "temp"], "line": 21},
+  {"op": "load", "args": ["R2", "R1"], "line": 5, "py_line": 5},
+  {"op": "store", "args": ["R1", "temp"], "line": 5, "py_line": 5},
 
-  {"op": "load", "args": ["b", "R1"], "line": 23},
-  {"op": "load", "args": ["j", "R2"], "line": 23},
-  {"op": "arr_store", "args": ["R1", "arr", "R2"], "line": 23},
+  {"op": "load", "args": ["R4", "R1"], "line": 6, "py_line": 6},
+  {"op": "load", "args": ["j", "R2"], "line": 6, "py_line": 6},
+  {"op": "arr_store", "args": ["R1", "arr", "R2"], "line": 6, "py_line": 6},
 
-  {"op": "load", "args": ["temp", "R1"], "line": 25},
-  {"op": "load", "args": ["j", "R2"], "line": 25},
-  {"op": "add", "args": ["R2", "1", "R3"], "line": 25},
-  {"op": "arr_store", "args": ["R1", "arr", "R3"], "line": 25},
+  {"op": "load", "args": ["temp", "R1"], "line": 7, "py_line": 7},
+  {"op": "load", "args": ["j", "R2"], "line": 7, "py_line": 7},
+  {"op": "add", "args": ["R2", "1", "R3"], "line": 7, "py_line": 7},
+  {"op": "arr_store", "args": ["R1", "arr", "R3"], "line": 7, "py_line": 7},
 
-  {"op": "label", "args": ["L2"], "line": 27},
+  {"op": "label", "args": ["L2"], "line": 3, "py_line": 3},
 
-  {"op": "load", "args": ["j", "R1"], "line": 28},
-  {"op": "add", "args": ["R1", "1", "R2"], "line": 28},
-  {"op": "store", "args": ["R2", "j"], "line": 28},
-  {"op": "goto", "args": ["L1"], "line": 29},
+  {"op": "load", "args": ["j", "R1"], "line": 3, "py_line": 3},
+  {"op": "add", "args": ["R1", "1", "R2"], "line": 3, "py_line": 3},
+  {"op": "store", "args": ["R2", "j"], "line": 3, "py_line": 3},
+  {"op": "goto", "args": ["L1"], "line": 3, "py_line": 3},
 
-  {"op": "label", "args": ["L4"], "line": 31},
+  {"op": "label", "args": ["L4"], "line": 2, "py_line": 2},
 
-  {"op": "load", "args": ["i", "R1"], "line": 32},
-  {"op": "add", "args": ["R1", "1", "R2"], "line": 32},
-  {"op": "store", "args": ["R2", "i"], "line": 32},
-  {"op": "goto", "args": ["L0"], "line": 33},
+  {"op": "load", "args": ["i", "R1"], "line": 2, "py_line": 2},
+  {"op": "add", "args": ["R1", "1", "R2"], "line": 2, "py_line": 2},
+  {"op": "store", "args": ["R2", "i"], "line": 2, "py_line": 2},
+  {"op": "goto", "args": ["L0"], "line": 2, "py_line": 2},
 
-  {"op": "label", "args": ["L6"], "line": 35},
+  {"op": "label", "args": ["L6"], "line": 9, "py_line": 9},
 
-  {"op": "load", "args": ["arr", "R1"], "line": 36},
-  {"op": "freturn", "args": ["R1"], "line": 36}
+  {"op": "load", "args": ["arr", "R1"], "line": 9, "py_line": 9},
+  {"op": "freturn", "args": ["R1"], "line": 9, "py_line": 9}
 ]
