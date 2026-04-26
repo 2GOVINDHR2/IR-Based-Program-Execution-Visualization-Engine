@@ -1,0 +1,28 @@
+[
+  {"op": "fenter", "args": ["factorial"], "line": 1, "py_line": 1},
+
+  {"op": "load", "args": ["n", "R1"], "line": 2, "py_line": 2},
+  {"op": "eq", "args": ["R1", "1", "R2"], "line": 2, "py_line": 2},
+  {"op": "if_false", "args": ["R2", "L_rec"], "line": 2, "py_line": 2},
+
+  {"op": "assign", "args": ["result", "1"], "line": 3, "py_line": 3},
+  {"op": "load", "args": ["result", "R1"], "line": 3, "py_line": 3},
+  {"op": "freturn", "args": ["R1"], "line": 3, "py_line": 3},
+
+  {"op": "label", "args": ["L_rec"], "line": 5, "py_line": 5},
+
+  {"op": "load", "args": ["n", "R1"], "line": 5, "py_line": 5},
+  {"op": "sub", "args": ["R1", "1", "R2"], "line": 5, "py_line": 5},
+  {"op": "store", "args": ["R2", "temp"], "line": 5, "py_line": 5},
+
+  {"op": "param", "args": ["temp"], "line": 5, "py_line": 5},
+  {"op": "fcall", "args": ["factorial"], "line": 5, "py_line": 5},
+
+  {"op": "load", "args": ["n", "R1"], "line": 5, "py_line": 5},
+  {"op": "load", "args": ["ret", "R2"], "line": 5, "py_line": 5},
+  {"op": "mul", "args": ["R1", "R2", "R3"], "line": 5, "py_line": 5},
+  {"op": "store", "args": ["R3", "result"], "line": 5, "py_line": 5},
+
+  {"op": "load", "args": ["result", "R1"], "line": 5, "py_line": 5},
+  {"op": "freturn", "args": ["R1"], "line": 5, "py_line": 5}
+]

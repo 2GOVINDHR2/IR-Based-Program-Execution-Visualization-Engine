@@ -1,0 +1,68 @@
+FUNCTION bubble_sort
+
+INITIALIZATION:
+
+i = 0
+
+----------------------------------
+
+L0: OUTER_LOOP_START
+
+Check if i < n
+If false → goto L6
+
+----------------------------------
+
+j = 0
+
+----------------------------------
+
+L1: INNER_LOOP_START
+
+Compute limit:
+
+temp1 = n - i
+limit = temp1 - 1
+
+Check if j < limit
+If false → goto L4
+
+----------------------------------
+
+Access elements:
+
+a = arr[j]
+b = arr[j + 1]
+
+----------------------------------
+
+Check if a > b
+If false → goto L2
+
+----------------------------------
+
+SWAP:
+
+temp = a
+arr[j] = b
+arr[j + 1] = temp
+
+----------------------------------
+
+L2: NO_SWAP
+
+j = j + 1
+goto L1
+
+----------------------------------
+
+L4: INNER_LOOP_END
+
+i = i + 1
+goto L0
+
+----------------------------------
+
+L6: END
+
+Return arr

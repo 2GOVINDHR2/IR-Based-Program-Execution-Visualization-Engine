@@ -1,0 +1,83 @@
+fenter binary_search
+
+assign low 0
+
+load n R1
+sub R1 1 R2
+store R2 high
+
+----------------------------------
+
+label L0
+
+load low R1
+load high R2
+lte R1 R2 R3
+if_false R3 L5
+
+----------------------------------
+
+load low R1
+load high R2
+add R1 R2 R3
+div R3 2 R4
+store R4 mid
+
+----------------------------------
+
+load mid R1
+arr_load arr R1 R2
+store R2 value
+
+----------------------------------
+
+load value R1
+load target R2
+eq R1 R2 R3
+if_false R3 L1_CHECK
+
+goto L1
+
+----------------------------------
+
+label L1_CHECK
+
+load value R1
+load target R2
+lt R1 R2 R3
+if_false R3 L3
+
+goto L2
+
+----------------------------------
+
+label L1
+
+load mid R1
+freturn R1
+
+----------------------------------
+
+label L2
+
+load mid R1
+add R1 1 R2
+store R2 low
+goto L0
+
+----------------------------------
+
+label L3
+
+load mid R1
+sub R1 1 R2
+store R2 high
+goto L0
+
+----------------------------------
+
+label L5
+
+assign result -1
+load result R1
+freturn R1

@@ -1,0 +1,5 @@
+1: def factorial_recursive(n):
+2:     if n == 1:
+3:         return 1
+4:     else:
+5:         return n * factorial_recursive(n - 1)

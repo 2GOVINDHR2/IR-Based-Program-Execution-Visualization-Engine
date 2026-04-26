@@ -1,0 +1,31 @@
+STACK FRAME:
+
+Each frame contains:
+- locals (n, temp, result)
+- return_ip
+
+GLOBAL ENGINE:
+
+- stack → list of frames
+- current_frame → active frame
+- param_value → temp storage
+- ret → return value from function
+
+FLOW:
+
+param x:
+    store argument
+
+fcall:
+    push current frame
+    create new frame
+    set n = param_value
+    save return_ip
+    jump to function start
+
+freturn:
+    get return value
+    pop stack
+    restore previous frame
+    store return in ret
+    jump back

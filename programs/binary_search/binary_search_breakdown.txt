@@ -1,0 +1,64 @@
+FUNCTION binary_search
+
+INITIALIZATION:
+
+low = 0
+high = n - 1
+
+----------------------------------
+
+L0: LOOP_START
+
+Check if low <= high
+If false → goto L5
+
+----------------------------------
+
+Compute mid:
+
+temp1 = low + high
+mid = temp1 // 2
+
+----------------------------------
+
+Access array element:
+
+value = arr[mid]
+
+----------------------------------
+
+Check if value == target
+If true → goto L1
+
+----------------------------------
+
+Check if value < target
+If true → goto L2
+
+Else → goto L3
+
+----------------------------------
+
+L1: FOUND
+
+Return mid
+
+----------------------------------
+
+L2: SEARCH RIGHT
+
+low = mid + 1
+goto L0
+
+----------------------------------
+
+L3: SEARCH LEFT
+
+high = mid - 1
+goto L0
+
+----------------------------------
+
+L5: NOT FOUND
+
+Return -1

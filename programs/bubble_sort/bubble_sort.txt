@@ -1,0 +1,9 @@
+1: def bubble_sort(arr, n):
+2:     for i in range(n):
+3:         for j in range(0, n - i - 1):
+4:             if arr[j] > arr[j + 1]:
+5:                 temp = arr[j]
+6:                 arr[j] = arr[j + 1]
+7:                 arr[j + 1] = temp
+8:
+9:     return arr

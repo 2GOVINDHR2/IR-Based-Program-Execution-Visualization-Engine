@@ -1,0 +1,20 @@
+FUNCTION factorial
+
+fenter factorial
+
+L0: Start
+
+Check if n == 1
+If true → goto L1
+
+Compute temp = n - 1
+
+param temp
+fcall factorial
+
+Multiply result = n * returned_value
+
+freturn result
+
+L1: BASE_CASE
+freturn 1

@@ -1,0 +1,9 @@
+1: def linear_search(arr, target):
+2:     i = 0
+3:     
+4:     while i < len(arr):
+5:         if arr[i] == target:
+6:             return i
+7:         i = i + 1
+8:     
+9:     return -1

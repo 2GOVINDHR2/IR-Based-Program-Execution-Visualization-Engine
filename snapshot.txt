@@ -1,0 +1,22 @@
+        snapshot = {
+            "ip": prev_ip,
+            "instruction": instr,
+
+            "registers": self.registers.copy(),
+            "locals": self.current_frame["locals"].copy(),
+
+            "stack_depth": len(self.stack),
+            "stack": [frame["locals"].copy() for frame in self.stack],
+
+            "event": event,
+            "details": details,
+
+            "jump": {
+                "taken": jump_taken,
+                "target": jump_target
+            },
+
+            "ret": self.ret,
+            "running": self.running,
+            "return_value": self.return_value
+        }
