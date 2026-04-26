@@ -33,14 +33,85 @@ MAX_STEPS = 1000   # infinite loop protection
 @app.route("/programs", methods=["GET"])
 def list_programs():
     """Frontend uses this to build the program dropdown and input form."""
+    # Static metadata for frontend display
+    PROGRAM_METADATA = {
+        "factorial_iterative": {
+            "title": "Factorial Iterative",
+            "type": "Iterative",
+            "description": "A loop-based implementation focusing on register updates and memory efficiency compared to its recursive counterpart.",
+            "time": "O(n) Time",
+            "space": "O(1) Space",
+            "snippet": [
+                {"text": "function factorial(n) {", "color": "text-primary-dim opacity-80"},
+                {"text": "  let result = 1;", "color": "text-tertiary-fixed", "indent": True},
+                {"text": "  for (let i = 2; i <= n; i++) {", "color": "text-primary-fixed", "indent": True},
+                {"text": "    result *= i;", "color": "text-primary-fixed", "indent": True},
+                {"text": "  }", "color": "text-primary-fixed", "indent": True},
+                {"text": "  return result;", "color": "text-primary-fixed", "indent": True},
+                {"text": "}", "color": "text-primary-dim opacity-80"}
+            ]
+        },
+        "factorial_recursive": {
+            "title": "Factorial Recursive",
+            "type": "Recursive",
+            "description": "A recursive implementation of the factorial function to demonstrate stack frame management and base case evaluation.",
+            "time": "O(n) Time",
+            "space": "O(n) Space",
+            "snippet": [
+                {"text": "function factorial(n) {", "color": "text-primary-dim opacity-80"},
+                {"text": "  if (n === 0) return 1;", "color": "text-tertiary-fixed", "indent": True},
+                {"text": "  return n * factorial(n - 1);", "color": "text-primary-fixed", "indent": True},
+                {"text": "}", "color": "text-primary-dim opacity-80"}
+            ]
+        },
+        "fibonacci_recursive": {
+            "title": "Fibonacci Sequence",
+            "type": "Recursive",
+            "description": "Visualizing the golden ratio through iterative state mutation and sequence generation.",
+            "time": "O(n) Time",
+            "space": "O(1) Space",
+            "snippet": []
+        },
+        "linear_search": {
+            "title": "Linear Search",
+            "type": "Search",
+            "description": "A simple search algorithm that checks each element in the array sequentially.",
+            "time": "O(n) Time",
+            "space": "O(1) Space",
+            "snippet": []
+        },
+        "bubble_sort": {
+            "title": "Bubble Sort",
+            "type": "Sort",
+            "description": "A basic sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.",
+            "time": "O(n^2) Time",
+            "space": "O(1) Space",
+            "snippet": []
+        },
+        "binary_search": {
+            "title": "Binary Search",
+            "type": "Search",
+            "description": "Divide and conquer algorithm demonstrating range narrowing and logarithmic execution complexity on sorted datasets.",
+            "time": "O(log n) Time",
+            "space": "O(1) Space",
+            "snippet": []
+        },
+    }
+
     result = []
     for pid, cfg in PROGRAMS.items():
+        meta = PROGRAM_METADATA.get(pid, {})
         entry = {
-            "id":         pid,
-            "label":      cfg["label"],
+            "id": pid,
+            "title": meta.get("title", cfg.get("label", pid)),
+            "type": meta.get("type", cfg.get("input_type", "")),
+            "description": meta.get("description", ""),
+            "time": meta.get("time", ""),
+            "space": meta.get("space", ""),
+            "snippet": meta.get("snippet", []),
             "input_type": cfg["input_type"],
-            "min_n":      cfg["min_n"],
-            "max_n":      cfg["max_n"],
+            "min_n": cfg["min_n"],
+            "max_n": cfg["max_n"],
         }
         if cfg["input_type"] == "array":
             entry["needs_target"] = cfg.get("needs_target", False)
@@ -52,6 +123,7 @@ def list_programs():
 # ── POST /execute/preset ──────────────────────────────────────────────────────
 @app.route("/execute/preset", methods=["POST"])
 def execute_preset():
+    print("Received execution request.")
     """
     Request examples:
       { "program": "factorial_iterative", "input": { "n": 5 } }
@@ -80,10 +152,27 @@ def execute_preset():
     if error:
         return _err(error, 400)
 
+
     # 2. load IR file using exact folder + filename from config
     ir, error = _load_ir(program_id)
     if error:
         return _err(error, 500)
+
+    print(f"Executing {program_id} with input: {clean_input}")
+    # 2b. load source code file if present
+    cfg = PROGRAMS[program_id]
+    folder_name = cfg["folder_name"]
+    # Try to find a code file (txt or py)
+    code_file = None
+    for ext in ["_code.txt", ".py", ".txt"]:
+        candidate = os.path.join(PROGRAMS_DIR, folder_name, f"{program_id}{ext}")
+        if os.path.exists(candidate):
+            code_file = candidate
+            break
+    source_code = None
+    if code_file:
+        with open(code_file) as f:
+            source_code = f.read()
 
     # 3. run engine with step cap (infinite loop protection)
     try:
@@ -105,6 +194,8 @@ def execute_preset():
         "output":      output,
         "total_steps": len(snapshots),
         "snapshots":   snapshots,
+        "source_code": source_code,
+        "ir": ir,
     })
 
 
