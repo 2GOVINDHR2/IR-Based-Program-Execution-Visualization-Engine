@@ -33,6 +33,9 @@ export async function getProgramData(programId) {
             arr: [5, 2, 4, 1, 3]
         };
     }
+    else if (programId === "fibonacci_recursive") {
+        input = { n: 6 }; // small value (important!)
+    }
 
     const res = await fetch(`${BASE_URL}/program/${programId}/execute`, {
         method: "POST",
