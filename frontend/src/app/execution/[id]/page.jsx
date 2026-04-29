@@ -1,24 +1,25 @@
-// app/execution/page.jsx
+// app/execution/[id]/page.jsx
+
 import TopAppBar from "@/components/TopAppBar";
 import SideNavBar from "@/components/SideNavBar";
-import ExecutionClient from "./index";
-import { getExecutionTrace } from "@/app/actions";
-import searchParams from "@/app/execution/SearchParamsClient";
+import ExecutionClient from "@/app/execution/[id]/index.jsx";
+import { getProgramData } from "@/app/execution/[id]/action";
 
 export const metadata = {
   title: "The Precision Lab - Execution Workspace",
 };
-export default async function Page({ searchParams }) {
-  const programId = searchParams?.program ?? "factorial_iterative";
 
-  const input = { n: 5 };
+export default async function Page({ params }) {
+  const { id: programId } = await params;
 
-  const trace = await getExecutionTrace(programId, input);
+  const trace = await getProgramData(programId);
 
   return (
     <div className="text-on-background overflow-hidden h-screen flex flex-col">
       <TopAppBar />
       <SideNavBar activeItem="execution" />
+
+      {/* Pass full data to client */}
       <ExecutionClient trace={trace} />
     </div>
   );

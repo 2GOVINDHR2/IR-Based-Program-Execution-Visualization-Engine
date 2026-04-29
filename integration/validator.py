@@ -18,7 +18,7 @@ Rules:
 PROGRAMS = {
     "factorial_iterative": {
         "label":        "Factorial (Iterative)",
-        "folder_name":  "factorial(iterative)",
+        "folder_name":  "factorial_iterative",
         "ir_file":      "factorial_iterative_ir.json",
         "input_type":   "single",
         "min_n":        0,
@@ -26,7 +26,7 @@ PROGRAMS = {
     },
     "factorial_recursive": {
         "label":        "Factorial (Recursive)",
-        "folder_name":  "factorial(recursive)",
+        "folder_name":  "factorial_recursive",
         "ir_file":      "factorial_recursive_ir.json",
         "input_type":   "single",
         "min_n":        1,
@@ -34,7 +34,7 @@ PROGRAMS = {
     },
     "fibonacci_recursive": {
         "label":        "Fibonacci (Recursive)",
-        "folder_name":  "fibonacci(recursive)",
+        "folder_name":  "fibonacci_recursive",
         "ir_file":      "fibonacci_recursive_ir.json",
         "input_type":   "single",
         "min_n":        0,

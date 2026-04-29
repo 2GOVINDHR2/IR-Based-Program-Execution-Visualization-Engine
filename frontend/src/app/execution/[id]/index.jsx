@@ -8,17 +8,19 @@ import StatePanel from "@/components/execution/StatePanel";
 import ControlBar from "@/components/execution/ControlBar";
 import React, {  useEffect } from "react";
 
-/**
- * CSR Client Component — owns execution playback state.
- *
- * Props: trace data fetched SSR in page.jsx
- */
 export default function ExecutionClient({ trace }) {
+  
   // Snapshots from backend
   const steps = trace?.snapshots || [];
   const [currentStep, setCurrentStep] = useState(0);
   const [status, setStatus] = useState("paused");
   const [autoPlay, setAutoPlay] = useState(false);
+  const irInstructions = trace?.ir || [];
+  // StatePanel expects localVariables, registers, callStack
+  const currentSnapshot = steps[currentStep] || {};
+  const currentLine = currentSnapshot.py_line;
+  const currentIRLine = currentSnapshot.line;
+  
 
   // Autoplay effect
   useEffect(() => {
@@ -63,13 +65,7 @@ export default function ExecutionClient({ trace }) {
   }
 
   // Prepare source code lines for CodePanel
-  const sourceLines = (trace.source_code || "No source available")
-  .split("\n")
-  .map((text, idx) => ({
-    line: idx + 1,
-    text,
-    isActive: false // Optionally highlight current line
-  }));
+  const sourceLines = trace.source_code || [];
 
   // Prepare execution flow steps for ExecutionFlowPanel
   const executionFlow = steps.map((step, idx) => ({
@@ -84,8 +80,7 @@ export default function ExecutionClient({ trace }) {
     memoryOffset: step.memoryOffset,
   }));
 
-  // StatePanel expects localVariables, registers, callStack
-  const currentSnapshot = steps[currentStep] || {};
+
   // 🔁 Convert locals → array
 const localVariables = Object.entries(currentSnapshot.locals || {}).map(
   ([name, value]) => ({
@@ -105,21 +100,24 @@ const registers = Object.entries(currentSnapshot.registers || {}).map(
   })
 );
 
-// 🔁 Fake call stack
-const callStack = [
-  {
-    index: currentSnapshot.stack_depth || 0,
-    label: "main",
-    address: `line ${currentSnapshot.line}`,
-    isActive: true,
-  },
-];
+
+const callStack = (currentSnapshot.stack || []).map((frame, idx) => ({
+  index: idx,
+  label: `Frame ${idx + 1}`,
+  variables: frame,
+  isActive: idx === (currentSnapshot.stack_depth - 1),
+}));
 
   return (
     <>
-      <main className="flex-1 flex flex-col pl-20 md:pl-64 pt-16 pb-16 bg-surface overflow-hidden">
-        <div className="flex-1 grid grid-cols-12 gap-0 overflow-auto">
-          <CodePanel sourceCode={sourceLines} />
+      <main className="fixed inset-0 flex flex-col pl-20 md:pl-64 pt-16 pb-16 bg-surface">
+        <div className="flex-1 grid grid-cols-12 gap-0 overflow-hidden">
+          <CodePanel
+           sourceCode={sourceLines}
+           irCode={trace.ir || []}
+           currentLine={currentLine}
+           currentIRLine={currentIRLine}
+          />
           <ExecutionFlowPanel
             steps={executionFlow}
             currentStep={currentStep + 1}

@@ -5,7 +5,7 @@ import NavItem from "./NavItem";
 
 const navItems = [
   { icon: "code_blocks", label: "Programs", href: "/" },
-  { icon: "play_circle", label: "Execution", href: "/execution" },
+  { icon: "play_circle", label: "Execution", href: "/execution/factorial_iterative" },
   { icon: "bug_report", label: "Debugger", href: "#" },
   { icon: "history", label: "History", href: "#" },
 ];

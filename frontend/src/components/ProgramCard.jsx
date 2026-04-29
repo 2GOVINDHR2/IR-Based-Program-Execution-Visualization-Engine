@@ -1,12 +1,12 @@
 "use client"
 import { useRouter } from "next/navigation";
 
-export default function ProgramCard({ program }) {
+export default function ProgramCard({ program}) {
   const router = useRouter();
 
   return (
     <div
-      onClick={() => router.push("/execution?program=" + program.id)}
+      onClick={() => router.push("/execution/" + program.id)}
       className="group p-6 bg-white rounded-lg border hover:shadow cursor-pointer flex justify-between"
     >
       <div>

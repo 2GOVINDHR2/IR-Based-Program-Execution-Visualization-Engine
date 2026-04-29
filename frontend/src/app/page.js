@@ -1,4 +1,3 @@
-// app/programs/page.jsx
 import TopAppBar from "@/components/TopAppBar";
 import SideNavBar from "@/components/SideNavBar";
 import BottomNavBar from "@/components/BottomNavBar";
@@ -9,11 +8,6 @@ export const metadata = {
   title: "The Precision Lab - Program Selection",
 };
 
-/**
- * SSR Server Component.
- * Fetches programs and stats on the server, passes them to the
- * interactive client component (ProgramsClient / index.jsx).
- */
 export default async function Home() {
   // Both fetches run in parallel
   const [programs, stats] = await Promise.all([getPrograms(), getLabStats()]);

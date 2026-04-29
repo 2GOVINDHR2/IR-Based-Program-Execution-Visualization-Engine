@@ -12,11 +12,13 @@ export default function ExecutionFlowPanel({ steps = [], currentStep, totalSteps
   const progress = totalSteps > 0 ? (currentStep / totalSteps) * 100 : 0;
 
   return (
-    <section className="col-span-4 bg-surface flex flex-col h-full border-x border-outline-variant/15">
-      <div className="p-6">
+    <section className="col-span-4 bg-surface flex flex-col h-full border-x border-outline-variant/15 overflow-hidden">
+      <div className="p-6 flex-shrink-0">
         <h2 className="text-lg font-bold text-on-surface mb-8">Execution Flow</h2>
+      </div>
 
-        <div className="space-y-4">
+      <div className="flex-1 overflow-y-auto px-6">
+        <div className="space-y-4 pb-6">
           {steps.map((step) => {
             if (step.state === "active") {
               return (
@@ -74,7 +76,7 @@ export default function ExecutionFlowPanel({ steps = [], currentStep, totalSteps
       </div>
 
       {/* Progress Bar */}
-      <div className="mt-auto p-6 bg-surface-container-low/50">
+      <div className="p-6 bg-surface-container-low/50 flex-shrink-0">
         <div className="flex justify-between items-center mb-4">
           <span className="text-xs font-medium text-on-surface-variant">Progress</span>
           <span className="text-xs font-bold text-primary">

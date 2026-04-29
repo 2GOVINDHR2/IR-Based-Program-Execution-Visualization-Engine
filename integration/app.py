@@ -255,6 +255,104 @@ def _err(msg, code):
     return jsonify({"error": msg}), code
 
 
+def _load_source(program_id):
+    print(f"Loading source code for program: {program_id}")
+    cfg = PROGRAMS[program_id]
+    folder = cfg["folder_name"]
+
+    # try multiple formats
+    for ext in ["_code.txt", ".txt", ".py"]:
+        path = os.path.join(PROGRAMS_DIR, folder, f"{program_id}{ext}")
+        print(f"Looking for source code at: {path}") 
+        if os.path.exists(path):
+            with open(path) as f:
+                return f.read(), None
+
+    return None, "Source file not found"
+
+
+@app.route("/program/<program_id>/source", methods=["GET"])
+def get_source(program_id):
+    if program_id not in PROGRAMS:
+        return _err("Invalid program id", 404)
+
+    source, error = _load_source(program_id)
+    if error:
+        return _err(error, 500)
+
+    return jsonify({
+        "program": program_id,
+        "code": source
+    })
+
+@app.route("/program/<program_id>/ir", methods=["GET"])
+def get_ir(program_id):
+    if program_id not in PROGRAMS:
+        return _err("Invalid program id", 404)
+
+    ir, error = _load_ir(program_id)
+    if error:
+        return _err(error, 500)
+
+    return jsonify({
+        "program": program_id,
+        "instructions": ir
+    })
+
+@app.route("/program/<program_id>/execute", methods=["POST"])
+def execute_program(program_id):
+    if program_id not in PROGRAMS:
+        return _err("Invalid program id", 404)
+
+    body = request.get_json(silent=True) or {}
+    raw_input = body.get("input", {})
+
+    # 1. validate
+    clean_input, error = validate(program_id, raw_input)
+    if error:
+        return _err(error, 400)
+
+    # 2. load IR
+    ir, error = _load_ir(program_id)
+    if error:
+        return _err(error, 500)
+
+    # 3. load source
+    raw_source, _ = _load_source(program_id)
+
+    source_code = []
+    if raw_source:
+        for line in raw_source.split("\n"):
+            if ":" in line:
+                num, text = line.split(":", 1)
+                try:
+                    source_code.append({
+                        "line": int(num.strip()),
+                        "text": text.strip()
+                    })
+                except:
+                    continue
+
+    try:
+        engine = ExecutionEngine(ir)
+        snapshots = engine.run(clean_input)
+        output = engine.return_value
+    except Exception as e:
+        return _err(f"Execution error: {e}", 500)
+
+    return jsonify({
+        "program": program_id,
+        "input": clean_input,
+        "output": output,
+        "snapshots": snapshots,
+        "total_steps": len(snapshots),
+        "source_code": source_code,
+        "ir": ir
+    })
+
+
+
+
 # ── start ─────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
